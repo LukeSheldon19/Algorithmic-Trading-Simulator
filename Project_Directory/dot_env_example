@@ -1,0 +1,22 @@
+LISTEN_NGINX_HTTP=127.0.0.1:8080
+LISTEN_NGINX_HTTPS=127.0.0.1:8484
+
+# Used by Django for security.
+# For local development:
+DJANGO_PUBLIC_HOSTNAME=localhost
+# For the public production server:
+#DJANGO_PUBLIC_HOSTNAME=example.clarku.edu
+
+# Database configuration
+POSTGRES_USER=django
+POSTGRES_PASSWORD=RANDOM_PASSWORD
+POSTGRES_DB=django_data
+
+# The Nginx configuration file. Has the server name, paths to SSL certs, etc.
+NGINX_CONFIG=default.development.conf
+#NGINX_CONFIG=default.production.conf
+
+DJANGO_SECRET_KEY=SOMETHING_LONG_AND_RANDOM
+# Should be kept False on public-facing servers. Gives full stack traces and
+# disables certain security safeguards. Change to True for local debugging.
+DJANGO_DEBUG=False

@@ -1,0 +1,216 @@
+/* Reset some default styles for a clean slate */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for color changes */
+}
+
+/* Use variables for consistent theming and easy changes */
+:root {
+    --primary-color: #2A2A2A; /* Dark shade for backgrounds */
+    --secondary-color: orange; /* Vibrant shade for accents */
+    --font-primary: 'Roboto', sans-serif; /* Modern, clean font */
+    --font-secondary: 'Poppins', sans-serif;
+}
+
+body, html {
+    height: 100%;
+    font-family: var(--font-primary);
+    background-color: var(--primary-color);
+    color: #ffffff; /* Ensure text stands out against the dark background */
+}
+
+.navbar {
+    background: rgba(12, 12, 12, 0.95); /* Slight transparency for depth */
+    height: 80px;
+    display: flex;
+    padding: 0 25px;
+    font-size: 1rem;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Stick to the top */
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for 3D effect */
+    z-index: 100; /* High z-index to ensure it's above other content */
+}
+
+.stock-container {
+    padding-top: 160px; /* Make room for the fixed navbar */
+    max-width: 1200px;
+    margin: 0 auto; /* Center the container */
+    padding: 2rem;
+}
+
+.stock-details{
+    margin-top: 10vh;
+    position: relative;
+    z-index: 1;
+}
+
+.stock-details h1, .stock-details h2 {
+    font-family: var(--font-secondary);
+    margin-bottom: 1rem;
+}
+
+.date-price {
+    color: var(--secondary-color); /* Use accent color for key info */
+    margin-bottom: 0.5rem;
+}
+
+.search-bar {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.search-text {
+    border: 2px solid var(--secondary-color);
+    border-radius: 25px 0 0 25px; /* Rounded left side */
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly see-through */
+    width: calc(100% - 100px); /* Leave space for button */
+    outline: none; /* Remove default focus outline */
+}
+
+.search-button {
+    border: none;
+    background-color: var(--secondary-color); /* Accent color for CTA */
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0 25px 25px 0; /* Rounded right side */
+    cursor: pointer; /* Indicate it's clickable */
+    outline: none; /* Remove default focus outline */
+}
+
+.search-button:hover {
+    background-color: darken(var(--secondary-color), 10%); /* Slightly darken on hover for feedback */
+}
+
+.add-to-portfolio-btn {
+    /* Styles for your add to portfolio button */
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type="number"] {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.stock-img {
+    display: block;
+    max-width: 100%; /* Responsive image size */
+    height: auto; /* Maintain aspect ratio */
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to image for depth */
+}
+/* Portfolio Section Styling */
+
+.portfolio-create {
+    background-color: var(--light-background-color, #f5f5f5); /* Soft gray background */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px; /* Spacing inside the box */
+    margin: 20px auto; /* Centering the box with margin */
+    max-width: 500px; /* Maximum width of the section */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 10px; /* Spacing between elements */
+}
+  
+.portfolio-create label,
+.portfolio-create select,
+.portfolio-create input,
+.portfolio-create button {
+font-family: var(--font-primary, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif); /* Consistent font family */
+font-size: 1rem; /* Readable font size */
+padding: 10px; /* Padding for interactive elements */
+margin-bottom: 10px; /* Space between the elements */
+border: 1px solid #ccc; /* Border for inputs and select */
+border-radius: 4px; /* Slightly rounded borders for inputs */
+width: 100%; /* Full width of the parent */
+color: black;
+}
+
+.portfolio-create button {
+background-color: var(--secondary-color, #007bff); /* Use the secondary color theme */
+color: white; /* Text color for buttons */
+cursor: pointer; /* Indicate that buttons are clickable */
+border: none; /* Remove default border from buttons */
+}
+
+.portfolio-create button:hover {
+background-color: darken(var(--secondary-color, #007bff), 10%); /* Darken button on hover for interaction feedback */
+}
+
+/* Add a bit of responsive design */
+@media (max-width: 768px) {
+.portfolio-create {
+    max-width: 100%; /* Full width on smaller screens */
+    margin: 20px 10px; /* Adjust margins for smaller screens */
+}
+}
+
+/* Additional aesthetics for the 'New Portfolio Name' input when it's visible */
+#new-portfolio-name-container {
+display: none; /* Hidden by default */
+}
+
+#new-portfolio-name-container.visible {
+display: block; /* Show when a new portfolio is selected */
+margin-top: 10px; /* Space it out from the previous elements */
+}
+
+
+/* Footer with a subtle background */
+footer {
+background-color: rgba(0, 0, 0, 0.7);
+padding: 2rem 0;
+}
+
+footer p {
+text-align: center;
+color: rgba(255, 255, 255, 0.6); /* Subdued text color */
+font-size: 0.875rem;
+}
+
+/* Use media queries for responsiveness */
+@media (max-width: 768px) {
+.navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+}
+
+.search-bar {
+    flex-direction: column;
+}
+
+.search-text, .search-button {
+    width: 100%;
+    border-radius: 25px; /* Rounded on all sides for mobile */
+    margin-bottom: 1rem; /* Space between the elements */
+}
+}
+
+
+
+
+
+
+

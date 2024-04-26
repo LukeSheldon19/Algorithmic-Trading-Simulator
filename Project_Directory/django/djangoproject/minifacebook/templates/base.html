@@ -1,0 +1,10 @@
+{% load static %}
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'minifacebook/styles.css' %}">
+</head>
+<body>
+{% block container %}{% endblock %}
+</body>
+</html>

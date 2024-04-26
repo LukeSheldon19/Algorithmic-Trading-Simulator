@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSCI 220 Algorithmic Trading Stock Search Results</title>
+    <link rel="stylesheet" href="{% static 'css/stockstyle.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="flex items-center">
+            <p class ="font-medium">CSCI 220 Algorithmic Trading Platform</p>
+        </div>
+    </div>
+
+
+    <div class="stock-container">
+        {% if chart_url %}
+            <div class="stock-details">
+                <h1>| Stock Information</h1>
+                <h2 class="stock-title">{{ stock_data.ticker }}</h2>
+                <p class="date-price"><strong>Share Price:</strong> ${{ stock_data.close_price }}</p>
+                <p class="date-price"><strong>Date:</strong> {{ stock_data.date }}</p>
+                <p class="date-price"><strong>RSI:</strong> {{ rsi }}</p>
+                <p class="date-price"><strong>ZScore:</strong> {{ zscore }}</p>
+                <p class="date-price"><strong>MinMax:</strong> {{ minmax }}</p>
+
+
+
+
+
+
+                <form class="search-bar" action="{% url 'search_stock' %}" method="get" class="flex justify-center">
+                    <input type="text" name="ticker" class="search-text" placeholder="Enter Stock Ticker..." list="tickerList" id="search">
+                    <datalist id="tickerList"></datalist>
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+                <!-- <button class="add-portfolio" type="submit">Add to portfolio</button> edit the code based on this line -->
+                <!-- Additional fields -->
+            </div>
+            <img class="stock-img" src="{{ chart_url }}" alt="Stock Chart for {{ stock_data.ticker }}">
+
+            <form method="post">
+                {% csrf_token %}
+                <h1>| View Portfolios</h1>
+                <table>
+                    <tr>
+                        <td>
+                            <form>
+                                {{form}}
+                                <button name="save">Save</button>
+
+                            </form>
+                        </td>
+                    </tr>
+                    {% for p in ports%}
+                    <tr>
+                        <td>{{ p.name }}</td>
+                        <td>
+                            <form action="{% url 'portfolio' %}" method="get">
+                                <input type="hidden" name="portfolio_id" value="{{ p.portfolio_id }}">
+                                <button type="submit" formnovalidate name="contents">Contents</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button formnovalidate name="delete" value="{{ p.portfolio_id }}">Delete</button>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+                </table>
+            </form>
+
+
+            
+            <form method="post">
+                {% csrf_token %}
+                {{form2}}
+                <button name="add">Add</button>
+            </form>
+
+
+
+        {% elif error %}
+            <p>{{ error }}</p>
+        {% else %}
+            <p>No data available for the ticker symbol entered.</p>
+        {% endif %}
+    </div>
+
+
+    <footer class="bg-black">
+        <div class="container mx-auto py-6 px-4">
+            <p class="text-gray-400 text-center text-sm">SADI Algorithmic Trading  © 2024</p>
+        </div>
+    </footer>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function goBack() {
+            
+            window.history.back();
+        }
+    </script>
+</head>
+<body>
+    <div class="stock-container">
+        <h1 class="text-2xl font-bold mb-4">Portfolio: {{ portfolio_id }}</h1>
+        <div class="grid grid-cols-2 gap-4">
+            {% for item in portfolio_contents %}
+            <div class="border p-4">
+                <p><strong>Ticker:</strong> {{ item.ticker }}</p>
+                <p><strong>Number of Shares:</strong> {{ item.num_shares }}</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="portfolio_id" value="{{ portfolio_id }}">
+                    <input type="hidden" name="ticker" value="{{ item.ticker }}">
+                    <button type="submit" name="remove">Remove</button>
+                </form>
+                <div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <button onclick="goBack()">Go Back</button>
+</body>
+</html>
