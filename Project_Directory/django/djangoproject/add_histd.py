@@ -14,7 +14,7 @@ from myApp.models import Company, Share, Data, Portfolio, Composed_of
 
 def main():
 
-    df = pd.read_csv('hist_df_1month_2.csv')
+    df = pd.read_csv('hist_df_1month_3.csv')
 
     with transaction.atomic():
 
