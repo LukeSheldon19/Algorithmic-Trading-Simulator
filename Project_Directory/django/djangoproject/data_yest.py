@@ -26,14 +26,25 @@ def main():
     for t in df['Ticker']:
         s = yf.Ticker(t)
         hist = s.history(period="2d")
+
+        if len(hist) > 1:
     
-        hist.drop(hist.index[1], inplace=True)
-        hist['Date'] = hist.index[0].date()
-        hist['Date'] = hist['Date'].astype(str)
-        hist.reset_index(drop=True, inplace=True)
-        hist = hist.drop(columns=['Dividends','Stock Splits'])
-        hist['Ticker'] = t
-        prev_day.append(hist)
+            hist.drop(hist.index[1], inplace=True)
+            hist['Date'] = hist.index[0].date()
+            hist['Date'] = hist['Date'].astype(str)
+            hist.reset_index(drop=True, inplace=True)
+            hist = hist.drop(columns=['Dividends','Stock Splits'])
+            hist['Ticker'] = t
+            prev_day.append(hist)
+        else:
+
+            hist['Date'] = hist.index[0].date()
+            hist['Date'] = hist['Date'].astype(str)
+            hist.reset_index(drop=True, inplace=True)
+            hist = hist.drop(columns=['Dividends','Stock Splits'])
+            hist['Ticker'] = t
+            prev_day.append(hist)
+
 
 
     with transaction.atomic():
