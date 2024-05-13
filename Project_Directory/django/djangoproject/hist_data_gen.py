@@ -37,4 +37,4 @@ for t in tickers:
         
 hist_df = pd.DataFrame(hist_data,columns=cols)
 
-hist_df.to_csv('hist_df_1month_5.csv',index=False)
+hist_df.to_csv('hist_df_1month_6.csv',index=False)#PXD removed from SP500, bought by exxon mobile
