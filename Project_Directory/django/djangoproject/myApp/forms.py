@@ -12,6 +12,12 @@ class add_comp(forms.ModelForm):
         model = Composed_of
         fields = ['portfolio_id','ticker','num_shares']
 
+    def clean_num_shares(self):
+        num_shares = self.cleaned_data.get('num_shares')
+        if num_shares < 1:
+            raise forms.ValidationError("Number of shares must be 1 or greater.")
+        return num_shares
+
     def save(self, commit=True):
         instance = super().save(commit=False)
         ticker = instance.ticker

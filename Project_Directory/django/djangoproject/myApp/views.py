@@ -7,7 +7,6 @@ from myApp.forms import add_port, add_comp
 from django.shortcuts import redirect
 
 
-
 def home(request):
     return render(request, "home.html")
 
@@ -35,7 +34,12 @@ def search_stock(request):
                     port.delete()
                 elif 'add' in request.POST:
                     form2 = add_comp(request.POST)
-                    form2.save()
+
+                    if form2.is_valid():
+                        form2.save()
+                    # else:
+                    #     form2 = add_comp()
+
 
             
             return render(request, 'stock_search.html', {
