@@ -7,4 +7,5 @@ Created functions for momentum trading (RSI calculation), mean reversion (Z-scor
 Functionality Video:
 
 https://github.com/user-attachments/assets/9e102aa6-2b7e-47b9-895b-03cf2622886c
+Please Note: The portfolio section is still in progress
 
